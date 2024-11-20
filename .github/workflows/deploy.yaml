@@ -44,7 +44,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: wut.devkitpro.org/**/*
+          path: wut.devkitpro.org/
 
   deploy:
     runs-on: ubuntu-latest
