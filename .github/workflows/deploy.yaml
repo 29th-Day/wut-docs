@@ -22,7 +22,13 @@ jobs:
           sort links.txt| uniq > unique.txt
 
       - name: Download files
-        run: wget --recursive --page-requisites --html-extension --convert-links --random-wait --user-agent="Mozilla/5.0" --restrict-file-names=windows --domains=wut.devkitpro.org --no-parent -q -i unique.txt
+        run: |
+          wget --recursive --page-requisites --html-extension --convert-links --random-wait --user-agent="Mozilla/5.0" --restrict-file-names=windows --domains=wut.devkitpro.org --no-parent -q -i unique.txt || exit_code=$?
+          if [ "$exit_code" = "8" ] || [ "$exit_code" = "" ]; then
+            exit 0
+          else
+            exit $exit_code
+          fi
 
       - name: Run pagefind
         run: |
