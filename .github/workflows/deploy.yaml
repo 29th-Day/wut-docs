@@ -1,4 +1,4 @@
-name: Scrape and Deploy
+name: Deploy
 on:
   workflow_dispatch: # Enables manual execution of the workflow
 
