@@ -8,9 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
-      - run: go version
       - uses: actions/setup-node@v4
-      - run: npm -v
 
       - name: Install dependencies
         run: |
