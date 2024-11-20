@@ -15,7 +15,7 @@ jobs:
           VERSION=$(curl -s https://api.github.com/repos/$REPO/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
           ASSET="gospider_${VERSION}_linux_x86_64.zip "
           wget -q "https://github.com/$REPO/releases/download/$VERSION/$ASSET" -O gospider.tar.gz
-          tar -xzf gospider.tar.gz
+          unzip -j gospider.zip
           chmod +x gospider
           sudo mv gospider /usr/local/bin/
           npm install -g pagefind
