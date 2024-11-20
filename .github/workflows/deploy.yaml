@@ -26,7 +26,7 @@ jobs:
       - name: Download files
         run: wget --recursive --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains=wut.devkitpro.org --no-parent -i unique.txt
 
-      - name: Configure pagefind
+      - name: Run pagefind
         run: |
           npx -y pagefind --site wut.devkitpro.org
           find wut.devkitpro.org -type f -name "*.html" -exec sed -i "s|</head>|<link href='/pagefind/pagefind-ui.css' rel='stylesheet'>\n<script src='/pagefind/pagefind-ui.js'></script>\n<div id='search'>\n</div>\n<script>\nwindow.addEventListener('DOMContentLoaded', (event) => {new PagefindUI({ element: '#search', showSubResults: true });});\n</script>\n</head>|g" {} +
