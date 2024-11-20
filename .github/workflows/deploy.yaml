@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      #- uses: actions/checkout@v4
       - uses: actions/setup-node@v4
 
       - name: Install dependencies
@@ -40,6 +40,8 @@ jobs:
           npx -y pagefind --site wut.devkitpro.org
           find wut.devkitpro.org -type f -name "*.html" -exec sed -i "s|</head>|<link href='/pagefind/pagefind-ui.css' rel='stylesheet'>\n<script src='/pagefind/pagefind-ui.js'></script>\n<div id='search'>\n</div>\n<script>\nwindow.addEventListener('DOMContentLoaded', (event) => {new PagefindUI({ element: '#search', showSubResults: true });});\n</script>\n</head>|g" {} +
 
+      - run: ls wut.devkitpro.org
+      
       - name: Upload artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
