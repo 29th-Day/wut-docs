@@ -8,13 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
+      - run: go version
       - uses: actions/setup-node@v4
+      - run: npm -v
 
       - name: Install dependencies
         env:
-          PATH: ${{ runner.home }}/go/bin:$PATH
+          PATH: ${{ runner.tool_cache }}/go/bin:$PATH
         run: |
-          go install github.com/jaeles-project/gospider@latest
+          GO111MODULE=on go install github.com/jaeles-project/gospider@latest
           npm install -g pagefind
 
       - name: Crawl wut.devkitpro.org
